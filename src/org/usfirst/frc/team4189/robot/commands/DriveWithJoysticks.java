@@ -25,28 +25,14 @@ public class DriveWithJoysticks extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	System.out.println("Drive With Joysticks has Initialized");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.chassis.setSpeed(OI.leftStick.getY() , OI.rightStick.getY());
-    	
-    	if(OI.winchUp.get() == false || OI.winchDown.get() == false){
-    		Robot.lifter.setWinch(0);
-    	}
-    	if(OI.portDown.get() == false || OI.portUp.get() == false){
-    		Cheval.chevalMotor.set(0);
-    	}
-    	if(OI.lifterUp.get() == false || OI.lifterDown.get() == false){
-    		Lifter.scissorMotor.set(0);
-    	}
-    	if(OI.shooterDown.get() == false || OI.shooterUp.get() == false){
-    		Shooter.shooterAngleMotor.set(0);
-    	}
-    	if(OI.shooterShoot.get() == false || OI.shooterShoot.get() == false){
-    		Shooter.shooterOperation.set(0);
-    	}
+    	SmartDashboard.putNumber("Left Stick", OI.leftStick.getY());
+    	SmartDashboard.putNumber("Right Stick", OI.rightStick.getY());
     	
     }
     

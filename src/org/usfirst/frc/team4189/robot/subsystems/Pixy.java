@@ -52,8 +52,8 @@ public class Pixy {
             }
         } catch (RuntimeException e) {
         }
-        if (rawData.length < 32) {
-            System.out.println("byte array length is broken: " + rawData.length);
+       if (rawData.length < 32) {
+            //System.out.println("byte array length is broken: " + rawData.length);
             return null;
         }
         for (int i = 0; i <= 16; i++) {
