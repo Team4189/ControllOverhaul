@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team4189.robot.commands.ChevalDown;
 import org.usfirst.frc.team4189.robot.commands.ChevalUp;
 import org.usfirst.frc.team4189.robot.commands.ExampleCommand;
-
+import org.usfirst.frc.team4189.robot.commands.IntroBall;
 import org.usfirst.frc.team4189.robot.commands.LifterDown;
 import org.usfirst.frc.team4189.robot.commands.ResetGyro;
 import org.usfirst.frc.team4189.robot.commands.SetLifter;
@@ -35,7 +35,7 @@ public class OI {
 	//Analog Inputs
 	public static AnalogInput rangeFinder1 = new AnalogInput(0);
 	public static AnalogInput rangeFinder2 = new AnalogInput(1);
-	//public static AnalogGyro gyro = new AnalogGyro(2);
+	public static AnalogGyro gyro = new AnalogGyro(2);
 	//public static AnalogGyro gyro = new AnalogGyro(3);
 	
 	//Buttons
@@ -72,6 +72,7 @@ public class OI {
 			squareUp.whenPressed(new SquareUp());
 			lifterUp.whileHeld(new SetLifter());
 			lifterDown.whileHeld(new LifterDown());
+			introBall.whenPressed(new IntroBall());
 			//winchUp.whileHeld(new WinchUp());
 			//winchDown.whileHeld(new WinchDown());
 			

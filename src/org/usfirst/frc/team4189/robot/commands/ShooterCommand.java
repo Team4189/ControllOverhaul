@@ -46,15 +46,11 @@ public class ShooterCommand extends Command {
     	//System.out.println(Robot.shooter.encGet());
     	//System.out.println(state);
     	
-    	if(OI.safty.get() == true){
-    		Robot.shooter.changeAngle(OI.accStick.getY());
-    	}
+    	/*if (OI.shooterShoot.get() == false){
+			Shooter.shooterOperation.set(0);
+		}*/
     	
-    	if(OI.safty.get() == true){
-    		if (OI.resetEnc.get() == true){
-    			Robot.shooter.enc3.reset();
-    		}
-    	}
+    	
     	
     	if(OI.shooterUp.get()){
     		state = 3;
@@ -84,6 +80,9 @@ public class ShooterCommand extends Command {
     		if (OI.shooterShoot.get() == true){
     			Shooter.shooterOperation.set(1);
     		}
+    		else{
+    			Shooter.shooterOperation.set(0);
+    		}
     		
     		
     		break;
@@ -99,6 +98,7 @@ public class ShooterCommand extends Command {
     			Shooter.shooterAngleMotor.set(0);
     		}
     		Shooter.shooterOperation.set(-.5);
+    		
     		break;
     	
     	case 3:
@@ -113,6 +113,9 @@ public class ShooterCommand extends Command {
     		}
     		if (OI.shooterShoot.get() == true){
     			Shooter.shooterOperation.set(1);
+    		}
+    		else{
+    			Shooter.shooterOperation.set(0);
     		}
     		break;
     	

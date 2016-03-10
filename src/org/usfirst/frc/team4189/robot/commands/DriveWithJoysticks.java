@@ -34,6 +34,16 @@ public class DriveWithJoysticks extends Command {
     	SmartDashboard.putNumber("Left Stick", OI.leftStick.getY());
     	SmartDashboard.putNumber("Right Stick", OI.rightStick.getY());
     	
+    	if(OI.safty.get() == true){
+    		Robot.shooter.changeAngle(OI.accStick.getY());
+    	}
+    	
+    	if(OI.safty.get() == true){
+    		if (OI.resetEnc.get() == true){
+    			Robot.shooter.enc3.reset();
+    		}
+    	}
+    	
     }
     
     

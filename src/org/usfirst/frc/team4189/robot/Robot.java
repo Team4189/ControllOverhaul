@@ -57,7 +57,6 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		System.out.println("The Robot has begun initializing");
     	oi = new OI();
         // instantiate the command used for the autonomous period
         autonomousCommand = new DriveForSquare();

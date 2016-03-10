@@ -21,7 +21,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Chassis extends Subsystem {
     Talon rightMotor = new Talon(RobotMap.rightMotorPort);
     Talon leftMotor = new Talon(RobotMap.leftMotorPort);
-    public static Pixy pixy = new Pixy();
+    
+    
+    //public static Pixy pixy = new Pixy();
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -70,7 +72,7 @@ public class Chassis extends Subsystem {
 			SmartDashboard.putNumber("Object Width: ", pixy.readPacket(1).Width);
 			*/
 	 
-    	try {
+    	/*try {
     		PixyPacket pkt = pixy.readPacket(1);
 			if(pkt != null){
     		SmartDashboard.putNumber("Object x: ", pkt.X);
@@ -84,7 +86,7 @@ public class Chassis extends Subsystem {
     		System.out.println(e.getMessage());  
     		
     		//test
-    	}
+    	}*/
     }
     
     
@@ -98,6 +100,7 @@ public class Chassis extends Subsystem {
 	    SwerveVs[i] = Robot.chassis.convert();
 	    Robot.chassis.setSpeed(0,0);
 	}
+	
 	Arrays.sort(SwerveVs);
 	minRange = SwerveVs[0];
 	Robot.chassis.setSpeed(0,0);
