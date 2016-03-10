@@ -41,13 +41,13 @@ public class Chassis extends Subsystem {
     }
 
     public double gyroConvert(){
-	//if(OI.gyro.getAngle() < 360 && OI.gyro.getAngle() > -360){
-	    //return OI.gyro.getAngle();
-    	return 1;
-	//}
-	//OI.gyro.reset();
-	//return 0.0;
-	//return OI.gyro.getAngle();
+	if(OI.gyro.getAngle() < 360 && OI.gyro.getAngle() > -360){
+	    return OI.gyro.getAngle();
+    	
+	}
+	OI.gyro.reset();
+	
+	return OI.gyro.getAngle();
 
 
     }

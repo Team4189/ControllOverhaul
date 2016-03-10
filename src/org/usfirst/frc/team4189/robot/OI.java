@@ -72,7 +72,9 @@ public class OI {
 			squareUp.whenPressed(new SquareUp());
 			lifterUp.whileHeld(new SetLifter());
 			lifterDown.whileHeld(new LifterDown());
+
 			introBall.whenPressed(new IntroBall());
+
 			//winchUp.whileHeld(new WinchUp());
 			//winchDown.whileHeld(new WinchDown());
 			
