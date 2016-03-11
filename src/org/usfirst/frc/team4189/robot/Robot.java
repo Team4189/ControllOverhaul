@@ -21,6 +21,7 @@ import org.usfirst.frc.team4189.robot.subsystems.Lifter;
 import org.usfirst.frc.team4189.robot.subsystems.Shooter;
 
 import Autonomous.DriveForSquare;
+import Autonomous.GoStraight;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -59,7 +60,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	oi = new OI();
         // instantiate the command used for the autonomous period
-        autonomousCommand = new DriveForSquare();
+        autonomousCommand = new GoStraight();
         driveWithJoysticks = new DriveWithJoysticks();
         chassis.dashData();
         System.out.println("Version 1.1");

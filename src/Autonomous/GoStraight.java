@@ -1,5 +1,8 @@
 package Autonomous;
 
+import org.usfirst.frc.team4189.robot.OI;
+import org.usfirst.frc.team4189.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -18,6 +21,18 @@ public class GoStraight extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(Robot.chassis.gyroConvert() < -5){
+    		Robot.chassis.setSpeed(.75, 1);
+    	}
+    	else{
+    		Robot.chassis.setSpeed(.75, .75);
+    	}
+    	if(Robot.chassis.gyroConvert() > 5){
+    		Robot.chassis.setSpeed(1, .75);
+    	}
+    	else{
+    		Robot.chassis.setSpeed(.75, .75);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 import org.usfirst.frc.team4189.robot.commands.ChevalDown;
 import org.usfirst.frc.team4189.robot.commands.ChevalUp;
@@ -34,8 +35,8 @@ public class OI {
 	
 	//Analog Inputs
 	public static AnalogInput rangeFinder1 = new AnalogInput(0);
-	public static AnalogInput rangeFinder2 = new AnalogInput(1);
-	public static AnalogGyro gyro = new AnalogGyro(2);
+	public static AnalogInput rangeFinder2 = new AnalogInput(2);
+	public static AnalogGyro gyro = new AnalogGyro(1);
 	//public static AnalogGyro gyro = new AnalogGyro(3);
 	
 	//Buttons
