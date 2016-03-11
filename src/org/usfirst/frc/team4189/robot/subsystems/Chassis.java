@@ -21,8 +21,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Chassis extends Subsystem {
     Talon rightMotor = new Talon(RobotMap.rightMotorPort);
     Talon leftMotor = new Talon(RobotMap.leftMotorPort);
-    
-    
+
+
     //public static Pixy pixy = new Pixy();
 
     // Put methods for controlling this subsystem
@@ -36,25 +36,31 @@ public class Chassis extends Subsystem {
     public double convert(){
 	//conversion factor: 4.9mV/1cm
 	//this is our best guess so far
-	//return OI.rangeFinder1.getVoltage()*83.961;
-    	return 1;
+	return OI.rangeFinder1.getVoltage()*83.961;
+	//return 1;
     }
 
     public double gyroConvert(){
 	if(OI.gyro.getAngle() < 360 && OI.gyro.getAngle() > -360){
 	    return OI.gyro.getAngle();
-    	
+
 	}
 	OI.gyro.reset();
-	
+
 	return OI.gyro.getAngle();
 
 
     }
     public void dashData(){
+	
+	
+	SmartDashboard.putNumber("DII Get Value", SmartDashboard.getNumber("Distance In Inches"));
+	
+	
+	
 	//System.out.println(OI.gyro.getAngle());
-    	
-    SmartDashboard.putNumber("Distance In Inches", convert());
+
+	SmartDashboard.putNumber("Distance In Inches", convert());
 	//SmartDashboard.putNumber("Gyro Acceleration" , OI.gyro.getRate());
 	SmartDashboard.putNumber("Gyro Angle", gyroConvert());
 	/**
@@ -64,15 +70,15 @@ public class Chassis extends Subsystem {
 	 * 		read-out to the dashboard, but it's possible that this commented code 
 	 * 		would be more responsive when it comes to logic:
 	 * 
-	 
+
 	  		//PixyPacket pkt = pixy.readPacket(1); get rid of this line
 			SmartDashboard.putNumber("Object x: ", pixy.readPacket(1).X);
 			SmartDashboard.putNumber("Object y: ", pixy.readPacket(1).Y);
 			SmartDashboard.putNumber("Object Height: ", pixy.readPacket(1).Height);
 			SmartDashboard.putNumber("Object Width: ", pixy.readPacket(1).Width);
-			*/
-	 
-    	/*try {
+	 */
+
+	/*try {
     		PixyPacket pkt = pixy.readPacket(1);
 			if(pkt != null){
     		SmartDashboard.putNumber("Object x: ", pkt.X);
@@ -84,13 +90,13 @@ public class Chassis extends Subsystem {
     		// TODO Auto-generated catch block
     		//e.printStackTrace();
     		System.out.println(e.getMessage());  
-    		
+
     		//test
     	}*/
     }
-    
-    
-    
+
+
+
 
     public double compareRange(){
 	double minRange = 0.0;
@@ -100,7 +106,7 @@ public class Chassis extends Subsystem {
 	    SwerveVs[i] = Robot.chassis.convert();
 	    Robot.chassis.setSpeed(0,0);
 	}
-	
+
 	Arrays.sort(SwerveVs);
 	minRange = SwerveVs[0];
 	Robot.chassis.setSpeed(0,0);
