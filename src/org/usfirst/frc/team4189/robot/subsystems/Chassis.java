@@ -52,6 +52,12 @@ public class Chassis extends Subsystem {
 
     }
     public void dashData(){
+	
+	
+	SmartDashboard.putNumber("DII Get Value", SmartDashboard.getNumber("Distance In Inches"));
+	
+	
+	
 	//System.out.println(OI.gyro.getAngle());
 
 	SmartDashboard.putNumber("Distance In Inches", convert());
