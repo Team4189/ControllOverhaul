@@ -17,21 +17,23 @@ public class GoStraight extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	OI.gyro.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.chassis.gyroConvert() < -5){
-    		Robot.chassis.setSpeed(.75, 1);
-    	}
-    	else{
-    		Robot.chassis.setSpeed(.75, .75);
-    	}
     	if(Robot.chassis.gyroConvert() > 5){
-    		Robot.chassis.setSpeed(1, .75);
+    		Robot.chassis.setSpeed(-.10, -.40);
     	}
     	else{
-    		Robot.chassis.setSpeed(.75, .75);
+    		Robot.chassis.setSpeed(-.20, -.20);
+    		
+    	}
+    	if(Robot.chassis.gyroConvert() < -5){
+    		Robot.chassis.setSpeed(-.40, -.10);
+    	}
+    	else{
+    		Robot.chassis.setSpeed(-.20, -.20);
     	}
     }
 

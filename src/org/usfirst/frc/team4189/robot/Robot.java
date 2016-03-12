@@ -20,6 +20,7 @@ import org.usfirst.frc.team4189.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team4189.robot.subsystems.Lifter;
 import org.usfirst.frc.team4189.robot.subsystems.Shooter;
 
+import Autonomous.DriveForDistance;
 import Autonomous.DriveForSquare;
 import Autonomous.GoStraight;
 
@@ -60,7 +61,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	oi = new OI();
         // instantiate the command used for the autonomous period
-        autonomousCommand = new GoStraight();
+        autonomousCommand = new DriveForDistance();
         driveWithJoysticks = new DriveWithJoysticks();
         chassis.dashData();
         System.out.println("Version 1.1");

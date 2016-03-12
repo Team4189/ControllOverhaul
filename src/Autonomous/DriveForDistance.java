@@ -1,5 +1,6 @@
 package Autonomous;
 
+import org.usfirst.frc.team4189.robot.OI;
 import org.usfirst.frc.team4189.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class DriveForDistance extends Command {
-    final static double CURVE_SEVERITY = 1.3;
+    final static double CURVE_SEVERITY = 1.15;
 
     public DriveForDistance() {
 	// Use requires() here to declare subsystem dependencies
@@ -21,32 +22,45 @@ public class DriveForDistance extends Command {
     double setSpeed;
     
     protected void initialize() {
+    	OI.gyro.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	Robot.chassis.setSpeed(autoOut(), autoOut());
+    	if(Robot.chassis.gyroConvert() > 5){
+    		Robot.chassis.setSpeed(-.10, -.40);
+    	}
+    	else{
+    		Robot.chassis.setSpeed(autoOut(), autoOut());
+    		
+    	}
+    	if(Robot.chassis.gyroConvert() < -5){
+    		Robot.chassis.setSpeed(-.40, -.10);
+    	}
+    	else{
+    		Robot.chassis.setSpeed(autoOut(), autoOut());
+    	}
+    	
+    	//Robot.chassis.setSpeed(autoOut(), autoOut());
     }
 
     public double autoOut(){
-	if(Robot.chassis.convert() < 12){
-	    return 0.25;
+	if(Robot.chassis.convert() < 9.5){
+	    return 0.20;
 	}
 
-	return -(Math.pow(CURVE_SEVERITY, (Robot.chassis.convert()-24.42)))/40;//the -1 sets the curve to cross speed = 0 when distance = 0
+	if(Robot.chassis.convert() > 12){
+		return -0.20;
+	}
+	
+	else{
+		return 0;
+	}
+	//return -(Math.pow(CURVE_SEVERITY, (Robot.chassis.convert()-24.42)))/40;//the -1 sets the curve to cross speed = 0 when distance = 0
+	
 
 
-
-	/*double output = inchesInit - Robot.bigBlackMotor.convert();
-    	if (output < 30){
-    		return setSpeed = 1;
-    	}
-
-    	else{
-    		return setSpeed = 0;
-    	}
-	 */
-
+	
     }
 
     // Make this return true when this Command no longer needs to run execute()

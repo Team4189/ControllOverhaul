@@ -54,7 +54,7 @@ public class Chassis extends Subsystem {
     public void dashData(){
 	
 	
-	SmartDashboard.putNumber("DII Get Value", SmartDashboard.getNumber("Distance In Inches"));
+	//SmartDashboard.putNumber("DII Get Value", SmartDashboard.getNumber("Distance In Inches"));
 	
 	
 	
