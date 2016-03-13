@@ -9,13 +9,11 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 
-import org.usfirst.frc.team4189.robot.commands.ChevalDown;
-import org.usfirst.frc.team4189.robot.commands.ChevalUp;
-import org.usfirst.frc.team4189.robot.commands.ExampleCommand;
+
+
 import org.usfirst.frc.team4189.robot.commands.IntroBall;
-import org.usfirst.frc.team4189.robot.commands.LifterDown;
 import org.usfirst.frc.team4189.robot.commands.ResetGyro;
-import org.usfirst.frc.team4189.robot.commands.SetLifter;
+import org.usfirst.frc.team4189.robot.commands.SetScissorLifter;
 import org.usfirst.frc.team4189.robot.commands.SquareUp;
 
 
@@ -72,17 +70,11 @@ public class OI {
 	public OI(){
 			//resetGyro.whenPressed(new ResetGyro());
 			//squareUp.whenPressed(new SquareUp());
-			lifterUp.whileHeld(new SetLifter());
-			lifterDown.whileHeld(new LifterDown());
-
 			introBall.whenPressed(new IntroBall());
-
 			//winchUp.whileHeld(new WinchUp());
 			//winchDown.whileHeld(new WinchDown());
-			
 			//chevalDown.whileHeld(new ChevalDown());
 			//chevalUp.whileHeld(new ChevalUp());
-			
 			//CameraServer.getInstance().startAutomaticCapture(Robot.chassis.pixyCam);
 	 }
 }

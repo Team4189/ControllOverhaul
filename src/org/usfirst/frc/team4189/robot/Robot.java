@@ -12,13 +12,14 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.AxisCamera;
 import org.usfirst.frc.team4189.robot.commands.DriveWithJoysticks;
-import org.usfirst.frc.team4189.robot.commands.ExampleCommand;
+
 import org.usfirst.frc.team4189.robot.commands.PortcullisLifter;
+import org.usfirst.frc.team4189.robot.commands.SetScissorLifter;
 import org.usfirst.frc.team4189.robot.commands.ShooterCommand;
 import org.usfirst.frc.team4189.robot.subsystems.Chassis;
-import org.usfirst.frc.team4189.robot.subsystems.Cheval;
-import org.usfirst.frc.team4189.robot.subsystems.ExampleSubsystem;
-import org.usfirst.frc.team4189.robot.subsystems.Lifter;
+import org.usfirst.frc.team4189.robot.subsystems.PortcullisSubsystem;
+
+import org.usfirst.frc.team4189.robot.subsystems.ScissorLifter;
 import org.usfirst.frc.team4189.robot.subsystems.Shooter;
 
 import Autonomous.DriveForAccel;
@@ -27,6 +28,11 @@ import Autonomous.DriveForSquare;
 import Autonomous.DriveOverRampart;
 
 import Autonomous.GoStraight;
+import Autonomous.LowBar;
+import Autonomous.Moat;
+import Autonomous.Portcullis;
+import Autonomous.RockWall;
+import Autonomous.RoughTerrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -37,12 +43,11 @@ import Autonomous.GoStraight;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static Chassis chassis = new Chassis();
-	public static Lifter lifter = new Lifter();
+	public static ScissorLifter scissorLifter = new ScissorLifter();
 	public static Shooter shooter = new Shooter();
-	public static Cheval cheval = new Cheval();
+	public static PortcullisSubsystem cheval = new PortcullisSubsystem();
 	DriveWithJoysticks driveWithJoysticks;
 	public String currentAutonomous;
 
@@ -69,10 +74,6 @@ public class Robot extends IterativeRobot {
 		driveWithJoysticks = new DriveWithJoysticks();
 		currentAutonomous = new String();
 		SmartDashboard.putNumber("Which Autonomous", 0);
-		// SmartDashboard.putBoolean("Drive over Ramparts", false);
-		// SmartDashboard.putBoolean("Go Straight", false);
-		// SmartDashboard.putBoolean("Drive for Distance" , false);
-
 		chassis.dashData();
 		System.out.println("Version 1.1");
 		System.out.println("The Robot has initialized");
@@ -84,11 +85,16 @@ public class Robot extends IterativeRobot {
 
 		if (SmartDashboard.getNumber("Which Autonomous") == 1) {
 			currentAutonomous = "Drive Over Ramparts";
-
 		} else if (SmartDashboard.getNumber("Which Autonomous") == 2) {
-			currentAutonomous = "Go Straight";
+			currentAutonomous = "Low Bar";
 		} else if (SmartDashboard.getNumber("Which Autonomous") == 3) {
-			currentAutonomous = "Drive For Distance";
+			currentAutonomous = "Moat";
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 4) {
+			currentAutonomous = "Portcullis";
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 5) {
+			currentAutonomous = "Rock Wall";
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 6) {
+			currentAutonomous = "Rough Terrain";
 		} else {
 			currentAutonomous = "Nonexestant/Invalid Autonomous";
 		}
@@ -101,9 +107,15 @@ public class Robot extends IterativeRobot {
 		if (SmartDashboard.getNumber("Which Autonomous") == 1) {
 			autonomousCommand = new DriveOverRampart();
 		} else if (SmartDashboard.getNumber("Which Autonomous") == 2) {
-			autonomousCommand = new GoStraight();
+			autonomousCommand = new LowBar();
 		} else if (SmartDashboard.getNumber("Which Autonomous") == 3) {
-			autonomousCommand = new DriveForDistance();
+			autonomousCommand = new Moat();
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 4) {
+			autonomousCommand = new Portcullis();
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 5) {
+			autonomousCommand = new RockWall();
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 6) {
+			autonomousCommand = new RoughTerrain();
 		} else {
 			autonomousCommand = null;
 		}
@@ -133,6 +145,7 @@ public class Robot extends IterativeRobot {
 		// Scheduler.getInstance().add(new PortcullisLifter());
 		Scheduler.getInstance().add(new ShooterCommand());
 		Scheduler.getInstance().add(new PortcullisLifter());
+		Scheduler.getInstance().add(new SetScissorLifter());
 		// Scheduler.getInstance().add(new *command*());
 
 	}

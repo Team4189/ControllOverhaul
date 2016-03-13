@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class Lifter extends Subsystem {
+public class ScissorLifter extends Subsystem {
 	
 	public static Talon winchMotor = new Talon(RobotMap.winchPort);
 	public static Talon scissorMotor = new Talon(RobotMap.scissorPort);

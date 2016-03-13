@@ -32,7 +32,7 @@ public class Moat extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 
-		if (timer2.get() < 15) {
+		//if (timer2.get() < 15) {
 			if (Robot.chassis.gyroConvert() > 2.5) {
 				timer.start();
 				if (timer.get() <= .5) {
@@ -63,9 +63,9 @@ public class Moat extends Command {
 				Robot.chassis.setSpeed(-.20, -.20);
 			}
 
-		} else {
-			Robot.chassis.setSpeed(0, 0);
-		}
+//		} else {
+//			Robot.chassis.setSpeed(0, 0);
+//		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

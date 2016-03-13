@@ -1,7 +1,8 @@
-package Autonomous;
+package org.usfirst.frc.team4189.robot.commands;
 
 import org.usfirst.frc.team4189.robot.OI;
 import org.usfirst.frc.team4189.robot.Robot;
+import org.usfirst.frc.team4189.robot.subsystems.ScissorLifter;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -9,38 +10,29 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RoughTerrain extends Command {
+public class SetScissorLifter extends Command {
 
-	Timer timer;
-
-	public RoughTerrain() {
+	public SetScissorLifter() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		OI.gyro.reset();
-		timer = new Timer();
-		timer.start();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		//if (timer.get() < 15) {
-			if (Robot.chassis.gyroConvert() > 5) {
-				Robot.chassis.setSpeed(-.1, -.4);
-			} else {
-				Robot.chassis.setSpeed(-.20, -.20);
+		if (OI.lifterUp.get() == true || OI.lifterDown.get() == true) {
+			if (OI.lifterUp.get() == true) {
+				Robot.scissorLifter.setScissor(.5);
 			}
-			if (Robot.chassis.gyroConvert() < -5) {
-				Robot.chassis.setSpeed(-.4, -.1);
-			} else {
-				Robot.chassis.setSpeed(-.20, -.20);
+			if (OI.lifterDown.get() == true) {
+				Robot.scissorLifter.setScissor(-.5);
 			}
-//		}else{
-//			Robot.chassis.setSpeed(0, 0);
-//		}
+		} else{
+			Robot.scissorLifter.setScissor(0);
+		}
 		
 	}
 

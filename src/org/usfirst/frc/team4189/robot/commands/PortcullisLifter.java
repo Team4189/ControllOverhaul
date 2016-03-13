@@ -2,7 +2,7 @@ package org.usfirst.frc.team4189.robot.commands;
 
 import org.usfirst.frc.team4189.robot.OI;
 import org.usfirst.frc.team4189.robot.Robot;
-import org.usfirst.frc.team4189.robot.subsystems.Cheval;
+import org.usfirst.frc.team4189.robot.subsystems.PortcullisSubsystem;
 import org.usfirst.frc.team4189.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class PortcullisLifter extends Command {
-	private State currentState;
+	//private State currentState;
 	int state;
 
 	public PortcullisLifter() {
@@ -20,9 +20,9 @@ public class PortcullisLifter extends Command {
 		// eg. requires(chassis);
 	}
 
-	public enum State {
-		SCOOPING_POS, TRAVELING_POS, SHOOTING_POS
-	}
+//	public enum State {
+//		SCOOPING_POS, TRAVELING_POS, SHOOTING_POS
+//	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
@@ -47,33 +47,33 @@ public class PortcullisLifter extends Command {
 		case 2:
 
 			if (Robot.cheval.encGet() < 18 && OI.safty.get() == false) {
-				Cheval.chevalMotor.set(-.25);
+				PortcullisSubsystem.chevalMotor.set(-.25);
 			} else if (Robot.cheval.encGet() > 22 && OI.safty.get() == false) {
-				Cheval.chevalMotor.set(.25);
+				PortcullisSubsystem.chevalMotor.set(.25);
 			} else if (Robot.cheval.encGet() > 18 && Robot.cheval.encGet() < 22 && OI.safty.get() == false) {
-				Cheval.chevalMotor.set(0);
+				PortcullisSubsystem.chevalMotor.set(0);
 			}
 
 			break;
 
 		case 1:
 			if (Robot.cheval.encGet() < -247 && OI.safty.get() == false) {
-				Cheval.chevalMotor.set(-.25);
+				PortcullisSubsystem.chevalMotor.set(-.25);
 			} else if (Robot.cheval.encGet() > -243 && OI.safty.get() == false) {
-				Cheval.chevalMotor.set(.25);
+				PortcullisSubsystem.chevalMotor.set(.25);
 			} else if (Robot.cheval.encGet() > -247 && Robot.cheval.encGet() < -243 && OI.safty.get() == false) {
-				Cheval.chevalMotor.set(0);
+				PortcullisSubsystem.chevalMotor.set(0);
 			}
 
 			break;
 
 		case 3:
 			if (Robot.cheval.encGet() > 2 && OI.safty.get() == false) {
-				Cheval.chevalMotor.set(.25);
+				PortcullisSubsystem.chevalMotor.set(.25);
 			} else if (Robot.cheval.encGet() < -2 && OI.safty.get() == false) {
-				Cheval.chevalMotor.set(-.25);
+				PortcullisSubsystem.chevalMotor.set(-.25);
 			} else if (Robot.cheval.encGet() < 2 && Robot.cheval.encGet() > -2 && OI.safty.get() == false){
-				Cheval.chevalMotor.set(0);
+				PortcullisSubsystem.chevalMotor.set(0);
 			}
 
 			break;

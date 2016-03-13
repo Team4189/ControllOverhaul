@@ -2,8 +2,8 @@ package org.usfirst.frc.team4189.robot.commands;
 
 import org.usfirst.frc.team4189.robot.OI;
 import org.usfirst.frc.team4189.robot.Robot;
-import org.usfirst.frc.team4189.robot.subsystems.Cheval;
-import org.usfirst.frc.team4189.robot.subsystems.Lifter;
+import org.usfirst.frc.team4189.robot.subsystems.PortcullisSubsystem;
+import org.usfirst.frc.team4189.robot.subsystems.ScissorLifter;
 import org.usfirst.frc.team4189.robot.subsystems.Shooter;
 
 import Autonomous.DriveForAccel;

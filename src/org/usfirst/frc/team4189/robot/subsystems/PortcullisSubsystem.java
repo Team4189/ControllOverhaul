@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class Cheval extends Subsystem {
+public class PortcullisSubsystem extends Subsystem {
    public static Talon chevalMotor = new Talon(RobotMap.chevalPort);
    DigitalInput chanA = new DigitalInput(RobotMap.encA2Port);
    DigitalInput chanB = new DigitalInput(RobotMap.encB2Port);
