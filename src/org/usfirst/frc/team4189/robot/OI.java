@@ -57,6 +57,7 @@ public class OI {
 	public static Button portParked = new JoystickButton(OI.accStick , 11);
 	public static Button safty = new JoystickButton(OI.leftStick , 8);
 	public static Button resetEnc = new JoystickButton(OI.rightStick , 11);
+	public static Button resetPortEnc = new JoystickButton(OI.rightStick , 10);
 
 	
 	//public static Button resetIntroBall = new JoystickButton(OI.leftStick , 6);
@@ -69,8 +70,8 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
 	 
 	public OI(){
-			resetGyro.whenPressed(new ResetGyro());
-			squareUp.whenPressed(new SquareUp());
+			//resetGyro.whenPressed(new ResetGyro());
+			//squareUp.whenPressed(new SquareUp());
 			lifterUp.whileHeld(new SetLifter());
 			lifterDown.whileHeld(new LifterDown());
 

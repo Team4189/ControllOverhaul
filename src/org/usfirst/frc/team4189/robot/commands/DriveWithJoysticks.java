@@ -6,30 +6,54 @@ import org.usfirst.frc.team4189.robot.subsystems.Cheval;
 import org.usfirst.frc.team4189.robot.subsystems.Lifter;
 import org.usfirst.frc.team4189.robot.subsystems.Shooter;
 
+import Autonomous.DriveForAccel;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class DriveWithJoysticks extends Command {
-	
-	
 
-    public DriveWithJoysticks() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.chassis);
-    }
+	double time;
+	Timer timer;
+	double lastTime = 0;
+	double dt = 0;
+	double velocity = 0; // define the initial velocity of the object
+	float position = 0;
+	BuiltInAccelerometer accel;
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	System.out.println("Drive With Joysticks has Initialized");
-    }
+	public DriveWithJoysticks() {
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+		requires(Robot.chassis);
+	}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+	// Called just before this Command runs the first time
+	protected void initialize() {
+		System.out.println("Drive With Joysticks has Initialized");
+
+		DriveForAccel dfa = new DriveForAccel();
+		timer = new Timer();
+		timer.start();
+		accel = new BuiltInAccelerometer();
+
+	}
+
+	protected double getAccel() {
+		double read = accel.getY();
+		if (Math.abs(read) < .025)
+			return 0;
+		else
+			return read;
+	}
+
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+    	
     	Robot.chassis.setSpeed(OI.leftStick.getY() , OI.rightStick.getY());
     	SmartDashboard.putNumber("Left Stick", OI.leftStick.getY());
     	SmartDashboard.putNumber("Right Stick", OI.rightStick.getY());
@@ -42,31 +66,56 @@ public class DriveWithJoysticks extends Command {
     		if (OI.resetEnc.get() == true){
     			Robot.shooter.enc3.reset();
     		}
+    	
+    	if (OI.safty.get() == true && OI.resetPortEnc.get() == true){
+    			Robot.cheval.enc2.reset();
+    		}
+    		
+    	if(OI.safty.get() == true && OI.portUp.get() == true){
+    		Robot.cheval.setSpeed(.25);
+    	}else if(OI.safty.get() == true && OI.portDown.get() == true){
+    		Robot.cheval.setSpeed(-.25);
+    	}else{
+    		Robot.cheval.setSpeed(0);
     	}
     	
-    }
-    
-    
-    void setLifter(){
     	
+    	double getAccelVar = getAccel();
+    	time = timer.get();  // time in seconds from the beginning
+        dt = time - lastTime;  //time of last loop
+        lastTime = time;
 
-    }
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	//Robot.chassis.setSpeed(0, 0);
-    	return false;
+    	//velocity += Math.abs(((getAccelVar)*9.81)/3.28) * dt;
+        position += 0.5 * Math.abs(accel.getY()) * (dt * dt);
         
-    }
+        
+        
+        SmartDashboard.putNumber("Distance Traveled", position);
+        SmartDashboard.putNumber("Accelerometer", accel.getX());
+        SmartDashboard.putNumber("Corrected Accel", getAccelVar);
+    	}
+    	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    	//Robot.chassis.setSpeed(0, 0);
-    	
-    }
+	void setLifter() {
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    	//Robot.chassis.setSpeed(0, 0);
-    }
+	}
+
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		// Robot.chassis.setSpeed(0, 0);
+		return false;
+
+	}
+
+	// Called once after isFinished returns true
+	protected void end() {
+		// Robot.chassis.setSpeed(0, 0);
+
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+		// Robot.chassis.setSpeed(0, 0);
+	}
 }
