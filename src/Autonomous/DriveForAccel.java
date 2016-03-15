@@ -38,7 +38,7 @@ public class DriveForAccel extends Command {
     	velocity += Math.abs(((accel.getX())*9.81)/3.28) * dt;
         position += 0.5 * velocity * dt;
         
-        SmartDashboard.putNumber("Distance Traveled", position);
+//        SmartDashboard.putNumber("Distance Traveled", position);
     }
 
     // Make this return true when this Command no longer needs to run execute()

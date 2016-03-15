@@ -90,9 +90,9 @@ public class DriveWithJoysticks extends Command {
         
         
         
-        SmartDashboard.putNumber("Distance Traveled", position);
-        SmartDashboard.putNumber("Accelerometer", accel.getX());
-        SmartDashboard.putNumber("Corrected Accel", getAccelVar);
+//        SmartDashboard.putNumber("Distance Traveled", position);
+//        SmartDashboard.putNumber("Accelerometer", accel.getX());
+//        SmartDashboard.putNumber("Corrected Accel", getAccelVar);
     	}
     	}
 

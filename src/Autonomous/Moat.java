@@ -47,7 +47,7 @@ public class Moat extends Command {
 
 			}
 			if (Robot.chassis.gyroConvert() < -2.5) {
-				SmartDashboard.putNumber("timer value", timer.get());
+//				SmartDashboard.putNumber("timer value", timer.get());
 				if (timer.get() == 0) {
 					timer.start();
 				}
