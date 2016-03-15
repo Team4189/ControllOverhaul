@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -24,6 +25,8 @@ public class Shooter extends Subsystem {
 	DigitalInput chanA = new DigitalInput(RobotMap.encA3Port);
     DigitalInput chanB = new DigitalInput(RobotMap.encB3Port);
     public Encoder enc3 = new Encoder(chanA, chanB);
+    
+    
     
     public double encGet() {
 	return enc3.getDistance();

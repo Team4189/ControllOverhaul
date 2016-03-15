@@ -25,10 +25,10 @@ public class SetScissorLifter extends Command {
 	protected void execute() {
 		if (OI.lifterUp.get() == true || OI.lifterDown.get() == true) {
 			if (OI.lifterUp.get() == true) {
-				Robot.scissorLifter.setScissor(.5);
+				Robot.scissorLifter.setScissor(-1);
 			}
 			if (OI.lifterDown.get() == true) {
-				Robot.scissorLifter.setScissor(-.5);
+				Robot.scissorLifter.setScissor(.5);
 			}
 		} else{
 			Robot.scissorLifter.setScissor(0);

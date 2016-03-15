@@ -29,8 +29,8 @@ public class Chassis extends Subsystem {
 	// here. Call these from Commands.
 
 	public void setSpeed(double x, double y) {
-		leftMotor.set(x);
-		rightMotor.set(y * -1);
+		leftMotor.set(x * -1);
+		rightMotor.set(y);
 	}
 
 	public double convert() {

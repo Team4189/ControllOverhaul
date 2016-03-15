@@ -31,12 +31,12 @@ public class RoughTerrain extends Command {
 			if (Robot.chassis.gyroConvert() > 5) {
 				Robot.chassis.setSpeed(-.1, -.4);
 			} else {
-				Robot.chassis.setSpeed(-.20, -.20);
+				Robot.chassis.setSpeed(-.5, -.50);
 			}
 			if (Robot.chassis.gyroConvert() < -5) {
 				Robot.chassis.setSpeed(-.4, -.1);
 			} else {
-				Robot.chassis.setSpeed(-.20, -.20);
+				Robot.chassis.setSpeed(-.50, -.50);
 			}
 //		}else{
 //			Robot.chassis.setSpeed(0, 0);

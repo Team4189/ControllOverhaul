@@ -24,15 +24,15 @@ public class IntroBall extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	if(timer.get() < .5){
+    	if(timer.get() < .25){
     		Robot.shooter.introBall(.5);
     		//System.out.println(timer.get());
     	}
-    	else if(timer.get() > .5 && timer.get() < 1){
+    	else if(timer.get() >= .25 && timer.get() < .5){
     		Robot.shooter.introBall(-.5);
     		//System.out.println(timer.get());
     	}
-    	else if(timer.get() >1){
+    	else if(timer.get() >= .5){
     		Robot.shooter.introBall(0);
     		//System.out.println(timer.get());
     		timer.stop();

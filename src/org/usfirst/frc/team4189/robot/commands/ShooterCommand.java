@@ -5,6 +5,7 @@ import org.usfirst.frc.team4189.robot.Robot;
 import org.usfirst.frc.team4189.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -30,6 +31,8 @@ public class ShooterCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 
+		SmartDashboard.putNumber("Shooter Enc Val", Robot.shooter.encGet());
+		
 		if (OI.shooterUp.get()) {
 			state = 3;
 		} else if (OI.shooterDown.get()) {

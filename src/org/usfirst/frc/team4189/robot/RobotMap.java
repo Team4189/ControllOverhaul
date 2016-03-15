@@ -32,8 +32,6 @@ public class RobotMap {
 	public static int shooterAnglePort = 5; 
 	public static int shooterPort = 6;
 	public static int introBallPort = 7;
-	//public static int *NAME* = 8;
-	//public static int *NAME* = 9;
 	
 	//DIO port numbers go here
 	public static int encA1Port = 0;
@@ -44,8 +42,6 @@ public class RobotMap {
 	public static int encB3Port = 5;
 	public static int shooterLimitSW1 = 6;
 	public static int shooterLimitSW2 = 7;
-	//public static int *NAME* = 8;
-	//public static int *NAME* = 9;
 	
 	
 	//AnalogInput port numbers go here
