@@ -73,6 +73,7 @@ public class Robot extends IterativeRobot {
 
 		driveWithJoysticks = new DriveWithJoysticks();
 		currentAutonomous = new String();
+		OI.gyro.reset();
 		SmartDashboard.putNumber("Which Autonomous", 0);
 		chassis.dashData();
 		System.out.println("Version 1.1");
