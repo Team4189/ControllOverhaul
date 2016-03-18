@@ -16,6 +16,7 @@ import org.usfirst.frc.team4189.robot.commands.DriveWithJoysticks;
 import org.usfirst.frc.team4189.robot.commands.PortcullisLifter;
 import org.usfirst.frc.team4189.robot.commands.SetScissorLifter;
 import org.usfirst.frc.team4189.robot.commands.ShooterCommand;
+import org.usfirst.frc.team4189.robot.commands.WinchCommand;
 import org.usfirst.frc.team4189.robot.subsystems.Chassis;
 import org.usfirst.frc.team4189.robot.subsystems.PortcullisSubsystem;
 
@@ -148,6 +149,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().add(new ShooterCommand());
 		Scheduler.getInstance().add(new PortcullisLifter());
 		Scheduler.getInstance().add(new SetScissorLifter());
+		Scheduler.getInstance().add(new WinchCommand());
 		// Scheduler.getInstance().add(new *command*());
 
 	}
