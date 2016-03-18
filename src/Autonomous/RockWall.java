@@ -32,7 +32,7 @@ public class RockWall extends Command {
 	protected void execute() {
 		//if (timer2.get() < 15) {
 			if (Robot.chassis.gyroConvert() > 2.5) {
-				timer.start();
+				//timer.start();
 				if (timer.get() <= .5) {
 					Robot.chassis.setSpeed(-.4, -.1);
 				} else if (timer.get() > .5 && timer.get() <= 1.5) {

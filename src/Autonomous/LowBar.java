@@ -21,7 +21,7 @@ Timer timer;
     // Called just before this Command runs the first time
     protected void initialize() {
     	OI.gyro.reset();
-    	timer = new Timer();
+//    	timer = new Timer();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -30,13 +30,13 @@ Timer timer;
     		Robot.chassis.setSpeed(-.1 , -.4);
     	}
     	else{
-    		//Robot.chassis.setSpeed(-.20, -.20);
+    		Robot.chassis.setSpeed(-.20, -.20);
     	}
     	if(Robot.chassis.gyroConvert() < -5){
     		Robot.chassis.setSpeed(-.4 , -.1);
     	}
     	else{
-    		//Robot.chassis.setSpeed(-.20, -.20);
+    		Robot.chassis.setSpeed(-.20, -.20);
     	}
     }
 

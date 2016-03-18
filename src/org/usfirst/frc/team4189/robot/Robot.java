@@ -78,6 +78,7 @@ public class Robot extends IterativeRobot {
 		chassis.dashData();
 		System.out.println("Version 1.1");
 		System.out.println("The Robot has initialized");
+		
 	}
 
 	public void disabledPeriodic() {
@@ -167,6 +168,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		chassis.dashData();
+		SmartDashboard.putNumber("Distance", Robot.chassis.convert());
 	}
 
 	/**

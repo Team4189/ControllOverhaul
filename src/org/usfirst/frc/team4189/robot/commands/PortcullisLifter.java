@@ -33,6 +33,7 @@ public class PortcullisLifter extends Command {
 	protected void execute() {
 
 		SmartDashboard.putNumber("Port Enc Value", Robot.cheval.encGet());
+//		System.out.println(Robot.cheval.encGet());
 		SmartDashboard.putNumber("State", state);
 
 		if (OI.portUp.get()) {
@@ -46,33 +47,33 @@ public class PortcullisLifter extends Command {
 		switch (state) {
 		case 2:
 
-			if (Robot.cheval.encGet() < 18 && OI.safty.get() == false) {
+			if (Robot.cheval.encGet() > 2 && OI.safty.get() == false) {
 				PortcullisSubsystem.chevalMotor.set(-.25);
-			} else if (Robot.cheval.encGet() > 22 && OI.safty.get() == false) {
+			} else if (Robot.cheval.encGet() < -2 && OI.safty.get() == false) {
 				PortcullisSubsystem.chevalMotor.set(.25);
-			} else if (Robot.cheval.encGet() > 18 && Robot.cheval.encGet() < 22 && OI.safty.get() == false) {
+			} else if (Robot.cheval.encGet() > -2 && Robot.cheval.encGet() < 2 && OI.safty.get() == false) {
 				PortcullisSubsystem.chevalMotor.set(0);
 			}
 
 			break;
 
 		case 1:
-			if (Robot.cheval.encGet() < -247 && OI.safty.get() == false) {
-				PortcullisSubsystem.chevalMotor.set(-.25);
-			} else if (Robot.cheval.encGet() > -243 && OI.safty.get() == false) {
+			if (Robot.cheval.encGet() < 283 && OI.safty.get() == false) {
 				PortcullisSubsystem.chevalMotor.set(.25);
-			} else if (Robot.cheval.encGet() > -247 && Robot.cheval.encGet() < -243 && OI.safty.get() == false) {
+			} else if (Robot.cheval.encGet() > 287 && OI.safty.get() == false) {
+				PortcullisSubsystem.chevalMotor.set(-.25);
+			} else if (Robot.cheval.encGet() > 283 && Robot.cheval.encGet() < 287 && OI.safty.get() == false) {
 				PortcullisSubsystem.chevalMotor.set(0);
 			}
 
 			break;
 
 		case 3:
-			if (Robot.cheval.encGet() > 2 && OI.safty.get() == false) {
-				PortcullisSubsystem.chevalMotor.set(.25);
-			} else if (Robot.cheval.encGet() < -2 && OI.safty.get() == false) {
+			if (Robot.cheval.encGet() > 60 && OI.safty.get() == false) {
 				PortcullisSubsystem.chevalMotor.set(-.25);
-			} else if (Robot.cheval.encGet() < 2 && Robot.cheval.encGet() > -2 && OI.safty.get() == false){
+			} else if (Robot.cheval.encGet() < 56 && OI.safty.get() == false) {
+				PortcullisSubsystem.chevalMotor.set(.25);
+			} else if (Robot.cheval.encGet() < 60 && Robot.cheval.encGet() > 56 && OI.safty.get() == false){
 				PortcullisSubsystem.chevalMotor.set(0);
 			}
 

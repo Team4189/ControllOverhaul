@@ -28,11 +28,11 @@ public class IntroBall extends Command {
     		Robot.shooter.introBall(.5);
     		//System.out.println(timer.get());
     	}
-    	else if(timer.get() >= .25 && timer.get() < .5){
+    	else if(timer.get() > .25 && timer.get() < .6){
     		Robot.shooter.introBall(-.5);
     		//System.out.println(timer.get());
     	}
-    	else if(timer.get() >= .5){
+    	else if(timer.get() > .6){
     		Robot.shooter.introBall(0);
     		//System.out.println(timer.get());
     		timer.stop();

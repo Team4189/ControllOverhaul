@@ -67,6 +67,7 @@ public class Chassis extends Subsystem {
 		// System.out.println(OI.gyro.getAngle());
 
 		SmartDashboard.putNumber("Distance In Inches", convert());
+		SmartDashboard.putNumber("Distance in Inches, Rear" , Robot.chassis.convert2());
 		// SmartDashboard.putNumber("Gyro Acceleration" , OI.gyro.getRate());
 		SmartDashboard.putNumber("Gyro Angle", gyroConvert());
 		/**
