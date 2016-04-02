@@ -33,6 +33,7 @@ public class OI {
 	
 
 	// Buttons
+	public static Button reverse = new JoystickButton(OI.rightStick, 1);
 	public static Button resetGyro = new JoystickButton(OI.rightStick, 2);
 	public static Button resetEnc = new JoystickButton(OI.rightStick, 11);
 	public static Button resetPortEnc = new JoystickButton(OI.rightStick, 10);
@@ -51,7 +52,8 @@ public class OI {
 	public static Button winchUp = new JoystickButton(OI.leftStick, 3);
 	public static Button winchDown = new JoystickButton(OI.leftStick, 2);
 	public static Button squareUp = new JoystickButton(OI.leftStick, 3);
-	public static Button safty = new JoystickButton(OI.leftStick, 8);
+	public static Button safety = new JoystickButton(OI.leftStick, 1);
+	
 
 
 	// Joystick stick = new Joystick(port);

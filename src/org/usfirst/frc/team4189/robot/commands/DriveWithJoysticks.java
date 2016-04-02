@@ -54,26 +54,31 @@ public class DriveWithJoysticks extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
     	
-    	Robot.chassis.setSpeed(OI.leftStick.getY() , OI.rightStick.getY());
+    	if (OI.safety.get() == true && OI.reverse.get() == true){
+    		Robot.chassis.setSpeed(OI.rightStick.getY()*-1 , OI.leftStick.getY()*-1);
+    	} else{
+    		Robot.chassis.setSpeed(OI.leftStick.getY() , OI.rightStick.getY());
+    	}
     	SmartDashboard.putNumber("Left Stick", OI.leftStick.getY());
     	SmartDashboard.putNumber("Right Stick", OI.rightStick.getY());
     	
-    	if(OI.safty.get() == true){
+    	if(OI.safety.get() == true){
     		Robot.shooter.changeAngle(OI.accStick.getY());
     	}
     	
-    	if(OI.safty.get() == true){
+    	if(OI.safety.get() == true){
     		if (OI.resetEnc.get() == true){
     			Robot.shooter.enc3.reset();
     		}
     	
-    	if (OI.safty.get() == true && OI.resetPortEnc.get() == true){
+    	if (OI.safety.get() == true && OI.resetPortEnc.get() == true){
     			Robot.cheval.enc2.reset();
     		}
+    	
     		
-    	if(OI.safty.get() == true && OI.portUp.get() == true){
+    	if(OI.safety.get() == true && OI.portUp.get() == true){
     		Robot.cheval.setSpeed(.25);
-    	}else if(OI.safty.get() == true && OI.portDown.get() == true){
+    	}else if(OI.safety.get() == true && OI.portDown.get() == true){
     		Robot.cheval.setSpeed(-.25);
     	}else{
     		Robot.cheval.setSpeed(0);
@@ -89,7 +94,7 @@ public class DriveWithJoysticks extends Command {
         position += 0.5 * Math.abs(accel.getY()) * (dt * dt);
         
         
-        
+        System.out.println("Raw Serial Data" + Robot.pixy.pixy.readString());
 //        SmartDashboard.putNumber("Distance Traveled", position);
 //        SmartDashboard.putNumber("Accelerometer", accel.getX());
 //        SmartDashboard.putNumber("Corrected Accel", getAccelVar);

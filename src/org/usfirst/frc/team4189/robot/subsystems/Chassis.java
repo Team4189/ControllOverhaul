@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Chassis extends Subsystem {
 	Talon rightMotor = new Talon(RobotMap.rightMotorPort);
 	Talon leftMotor = new Talon(RobotMap.leftMotorPort);
+	
 	// public static Pixy pixy = new Pixy();
 
 	// Put methods for controlling this subsystem
@@ -70,6 +71,8 @@ public class Chassis extends Subsystem {
 		SmartDashboard.putNumber("Distance in Inches, Rear" , Robot.chassis.convert2());
 		// SmartDashboard.putNumber("Gyro Acceleration" , OI.gyro.getRate());
 		SmartDashboard.putNumber("Gyro Angle", gyroConvert());
+		
+		
 		/**
 		 * We aren't doing any logic with these numbers, currently, just
 		 * printing to the dashboard the block inside the try/catch block seems

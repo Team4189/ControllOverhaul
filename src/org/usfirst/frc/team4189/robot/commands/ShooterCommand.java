@@ -44,12 +44,12 @@ public class ShooterCommand extends Command {
 		switch (state) {
 		case 2:
 
-			if (Robot.shooter.encGet() > -10 && OI.safty.get() == false) {
+			if (Robot.shooter.encGet() > -10 && OI.safety.get() == false) {
 				Shooter.shooterAngleMotor.set(-.5);
-			} else if (Robot.shooter.encGet() < 10 && OI.safty.get() == false) {
+			} else if (Robot.shooter.encGet() < 10 && OI.safety.get() == false) {
 				Shooter.shooterAngleMotor.set(.5);
 			}
-			if (Robot.shooter.encGet() > -10 && Robot.shooter.encGet() < 10 && OI.safty.get() == false) {
+			if (Robot.shooter.encGet() > -10 && Robot.shooter.encGet() < 10 && OI.safety.get() == false) {
 				Shooter.shooterAngleMotor.set(0);
 			}
 
@@ -62,9 +62,9 @@ public class ShooterCommand extends Command {
 			break;
 
 		case 1:
-			if (Robot.shooter.encGet() > -670 && OI.safty.get() == false) {
+			if (Robot.shooter.encGet() > -670 && OI.safety.get() == false) {
 				Shooter.shooterAngleMotor.set(-.5);
-			} else if (Robot.shooter.encGet() < -680 && OI.safty.get() == false) {
+			} else if (Robot.shooter.encGet() < -680 && OI.safety.get() == false) {
 				Shooter.shooterAngleMotor.set(.5);
 			} else {
 				Shooter.shooterAngleMotor.set(0);
@@ -74,9 +74,9 @@ public class ShooterCommand extends Command {
 			break;
 
 		case 3:
-			if (Robot.shooter.encGet() < 870 && OI.safty.get() == false) {
+			if (Robot.shooter.encGet() < 1030 && OI.safety.get() == false) {
 				Shooter.shooterAngleMotor.set(.5);
-			} else if (Robot.shooter.encGet() > 880 && OI.safty.get() == false) {
+			} else if (Robot.shooter.encGet() > 1050 && OI.safety.get() == false) {
 				Shooter.shooterAngleMotor.set(-.5);
 			} else {
 				Shooter.shooterAngleMotor.set(0);

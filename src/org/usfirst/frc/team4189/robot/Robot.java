@@ -18,6 +18,7 @@ import org.usfirst.frc.team4189.robot.commands.SetScissorLifter;
 import org.usfirst.frc.team4189.robot.commands.ShooterCommand;
 import org.usfirst.frc.team4189.robot.commands.WinchCommand;
 import org.usfirst.frc.team4189.robot.subsystems.Chassis;
+import org.usfirst.frc.team4189.robot.subsystems.Pixy;
 import org.usfirst.frc.team4189.robot.subsystems.PortcullisSubsystem;
 
 import org.usfirst.frc.team4189.robot.subsystems.ScissorLifter;
@@ -30,6 +31,7 @@ import Autonomous.DriveOverRampart;
 
 import Autonomous.GoStraight;
 import Autonomous.LowBar;
+import Autonomous.LowBarAndShoot;
 import Autonomous.Moat;
 import Autonomous.Portcullis;
 import Autonomous.RockWall;
@@ -49,17 +51,14 @@ public class Robot extends IterativeRobot {
 	public static ScissorLifter scissorLifter = new ScissorLifter();
 	public static Shooter shooter = new Shooter();
 	public static PortcullisSubsystem cheval = new PortcullisSubsystem();
+	public static Pixy pixy = new Pixy();
 	DriveWithJoysticks driveWithJoysticks;
 	public String currentAutonomous;
-
+	Timer timer = new Timer();
 	CameraServer server;
 
 	public Robot() {
-		server = CameraServer.getInstance();
-		server.setQuality(50);
-		// the camera name (ex "cam0") can be found through the roborio web
-		// interface
-		server.startAutomaticCapture("cam0");
+		
 	}
 
 	Command autonomousCommand;
@@ -69,6 +68,13 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
+		
+		server = CameraServer.getInstance();
+		server.setQuality(50);
+		// the camera name (ex "cam0") can be found through the roborio web
+		// interface
+		server.startAutomaticCapture("cam0");
+		
 		oi = new OI();
 		// instantiate the command used for the autonomous period
 
@@ -79,7 +85,7 @@ public class Robot extends IterativeRobot {
 		chassis.dashData();
 		System.out.println("Version 1.1");
 		System.out.println("The Robot has initialized");
-		
+
 	}
 
 	public void disabledPeriodic() {
@@ -98,6 +104,10 @@ public class Robot extends IterativeRobot {
 			currentAutonomous = "Rock Wall";
 		} else if (SmartDashboard.getNumber("Which Autonomous") == 6) {
 			currentAutonomous = "Rough Terrain";
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 7) {
+			currentAutonomous = "Drive to Object";
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 8) {
+			currentAutonomous = "Low Bar, Turn and Shoot";
 		} else {
 			currentAutonomous = "Nonexestant/Invalid Autonomous";
 		}
@@ -119,6 +129,10 @@ public class Robot extends IterativeRobot {
 			autonomousCommand = new RockWall();
 		} else if (SmartDashboard.getNumber("Which Autonomous") == 6) {
 			autonomousCommand = new RoughTerrain();
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 7) {
+			autonomousCommand = new DriveForDistance();
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 8) {
+			autonomousCommand = new LowBarAndShoot();
 		} else {
 			autonomousCommand = null;
 		}
@@ -150,6 +164,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().add(new PortcullisLifter());
 		Scheduler.getInstance().add(new SetScissorLifter());
 		Scheduler.getInstance().add(new WinchCommand());
+		Shooter.introBallMotor.set(0);
 		// Scheduler.getInstance().add(new *command*());
 
 	}

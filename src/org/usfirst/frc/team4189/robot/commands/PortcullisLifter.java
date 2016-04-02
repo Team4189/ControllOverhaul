@@ -47,33 +47,33 @@ public class PortcullisLifter extends Command {
 		switch (state) {
 		case 2:
 
-			if (Robot.cheval.encGet() > 2 && OI.safty.get() == false) {
+			if (Robot.cheval.encGet() > 2 && OI.safety.get() == false) {
 				PortcullisSubsystem.chevalMotor.set(-.25);
-			} else if (Robot.cheval.encGet() < -2 && OI.safty.get() == false) {
+			} else if (Robot.cheval.encGet() < -2 && OI.safety.get() == false) {
 				PortcullisSubsystem.chevalMotor.set(.25);
-			} else if (Robot.cheval.encGet() > -2 && Robot.cheval.encGet() < 2 && OI.safty.get() == false) {
+			} else if (Robot.cheval.encGet() > -2 && Robot.cheval.encGet() < 2 && OI.safety.get() == false) {
 				PortcullisSubsystem.chevalMotor.set(0);
 			}
 
 			break;
 
 		case 1:
-			if (Robot.cheval.encGet() < 283 && OI.safty.get() == false) {
+			if (Robot.cheval.encGet() < 283 && OI.safety.get() == false) {
 				PortcullisSubsystem.chevalMotor.set(.25);
-			} else if (Robot.cheval.encGet() > 287 && OI.safty.get() == false) {
+			} else if (Robot.cheval.encGet() > 287 && OI.safety.get() == false) {
 				PortcullisSubsystem.chevalMotor.set(-.25);
-			} else if (Robot.cheval.encGet() > 283 && Robot.cheval.encGet() < 287 && OI.safty.get() == false) {
+			} else if (Robot.cheval.encGet() > 283 && Robot.cheval.encGet() < 287 && OI.safety.get() == false) {
 				PortcullisSubsystem.chevalMotor.set(0);
 			}
 
 			break;
 
 		case 3:
-			if (Robot.cheval.encGet() > 60 && OI.safty.get() == false) {
-				PortcullisSubsystem.chevalMotor.set(-.25);
-			} else if (Robot.cheval.encGet() < 56 && OI.safty.get() == false) {
+			if (Robot.cheval.encGet() > 60 && OI.safety.get() == false) {
+				PortcullisSubsystem.chevalMotor.set(-.75);
+			} else if (Robot.cheval.encGet() < 56 && OI.safety.get() == false) {
 				PortcullisSubsystem.chevalMotor.set(.25);
-			} else if (Robot.cheval.encGet() < 60 && Robot.cheval.encGet() > 56 && OI.safty.get() == false){
+			} else if (Robot.cheval.encGet() < 60 && Robot.cheval.encGet() > 56 && OI.safety.get() == false){
 				PortcullisSubsystem.chevalMotor.set(0);
 			}
 

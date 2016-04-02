@@ -33,8 +33,7 @@ public class DriveOverRampart extends Command {
 	protected void execute() {
 		
 		
-		//if (timer2.get() < 15) {
-			if (Robot.chassis.gyroConvert() > 2.5) {
+					if (Robot.chassis.gyroConvert() > 2.5) {
 				timer.start();
 				if (timer.get() <= .5) {
 					Robot.chassis.setSpeed(-.4, -.1);
@@ -48,7 +47,7 @@ public class DriveOverRampart extends Command {
 
 			}
 			if (Robot.chassis.gyroConvert() < -2.5) {
-//				SmartDashboard.putNumber("timer value", timer.get());
+//				
 				if (timer.get() == 0) {
 					timer.start();
 				}
@@ -64,9 +63,7 @@ public class DriveOverRampart extends Command {
 				Robot.chassis.setSpeed(-.20, -.20);
 			}
 			
-//		}else{
-//			Robot.chassis.setSpeed(0, 0);
-//		}
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

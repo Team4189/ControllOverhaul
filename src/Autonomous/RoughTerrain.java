@@ -27,7 +27,7 @@ public class RoughTerrain extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		//if (timer.get() < 15) {
+		
 			if (Robot.chassis.gyroConvert() > 5) {
 				Robot.chassis.setSpeed(-.1, -.4);
 			} else {
@@ -38,9 +38,6 @@ public class RoughTerrain extends Command {
 			} else {
 				Robot.chassis.setSpeed(-.50, -.50);
 			}
-//		}else{
-//			Robot.chassis.setSpeed(0, 0);
-//		}
 		
 	}
 
