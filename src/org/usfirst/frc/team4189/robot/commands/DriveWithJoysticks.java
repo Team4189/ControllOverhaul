@@ -59,6 +59,11 @@ public class DriveWithJoysticks extends Command {
     	} else{
     		Robot.chassis.setSpeed(OI.leftStick.getY() , OI.rightStick.getY());
     	}
+    	
+    	if (OI.portSaftey.get() == true){
+    		PortcullisSubsystem.chevalMotor.set(OI.accStick.getY());
+    	}
+    	
     	SmartDashboard.putNumber("Left Stick", OI.leftStick.getY());
     	SmartDashboard.putNumber("Right Stick", OI.rightStick.getY());
     	
@@ -76,13 +81,13 @@ public class DriveWithJoysticks extends Command {
     		}
     	
     		
-    	if(OI.safety.get() == true && OI.portUp.get() == true){
-    		Robot.cheval.setSpeed(.25);
-    	}else if(OI.safety.get() == true && OI.portDown.get() == true){
-    		Robot.cheval.setSpeed(-.25);
-    	}else{
-    		Robot.cheval.setSpeed(0);
-    	}
+//    	if(OI.safety.get() == true && OI.portUp.get() == true){
+//    		Robot.cheval.setSpeed(.25);
+//    	}else if(OI.safety.get() == true && OI.portDown.get() == true){
+//    		Robot.cheval.setSpeed(-.25);
+//    	}else{
+//    		Robot.cheval.setSpeed(0);
+//    	}
     	
     	
     	double getAccelVar = getAccel();

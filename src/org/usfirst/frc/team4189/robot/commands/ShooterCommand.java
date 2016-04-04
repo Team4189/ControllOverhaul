@@ -4,6 +4,7 @@ import org.usfirst.frc.team4189.robot.OI;
 import org.usfirst.frc.team4189.robot.Robot;
 import org.usfirst.frc.team4189.robot.subsystems.Shooter;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -11,22 +12,25 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class ShooterCommand extends Command {
-	private State currentState;
+	//private State currentState;
 	int state;
+	Timer timer = new Timer();
 
 	public ShooterCommand() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 	}
 
-	public enum State {
-		SCOOPING_POS, TRAVELING_POS, SHOOTING_POS
-	}
+//	public enum State {
+//		SCOOPING_POS, TRAVELING_POS, SHOOTING_POS
+//	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		state = 2;
 	}
+	
+	
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
@@ -58,6 +62,17 @@ public class ShooterCommand extends Command {
 			} else {
 				Shooter.shooterOperation.set(0);
 			}
+			
+			if(timer.get() != 0 && OI.scoopPulse.get() == true){
+				timer.start();
+			}
+			
+			if(timer.get() < .2){
+				Robot.shooter.shooterOperation.set(-1);
+			} else if (timer.get() >.2){
+				Shooter.shooterOperation.set(0);
+			}
+			
 
 			break;
 

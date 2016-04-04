@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -23,6 +24,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Chassis extends Subsystem {
 	Talon rightMotor = new Talon(RobotMap.rightMotorPort);
 	Talon leftMotor = new Talon(RobotMap.leftMotorPort);
+	Timer timer = new Timer();
 	
 	// public static Pixy pixy = new Pixy();
 

@@ -43,15 +43,17 @@ public class OI {
 	public static Button shooterShoot = new JoystickButton(OI.accStick, 1);
 	public static Button shooterParked = new JoystickButton(OI.accStick, 8);
 	public static Button introBall = new JoystickButton(OI.accStick, 2);
-	public static Button portDown = new JoystickButton(OI.accStick, 12);
-	public static Button portUp = new JoystickButton(OI.accStick, 10);
-	public static Button portParked = new JoystickButton(OI.accStick, 11);
+//	public static Button portDown = new JoystickButton(OI.accStick, 12);
+//	public static Button portUp = new JoystickButton(OI.accStick, 10);
+//	public static Button portParked = new JoystickButton(OI.accStick, 11);
 	public static Button lifterUp = new JoystickButton(OI.accStick, 5);
 	public static Button lifterDown = new JoystickButton(OI.accStick, 3);
+	public static Button portSaftey = new JoystickButton(OI.accStick, 11);
+	public static Button scoopPulse = new JoystickButton(OI.accStick, 4);
 	
 	public static Button winchUp = new JoystickButton(OI.leftStick, 3);
 	public static Button winchDown = new JoystickButton(OI.leftStick, 2);
-	public static Button squareUp = new JoystickButton(OI.leftStick, 3);
+	//public static Button squareUp = new JoystickButton(OI.leftStick, 3);
 	public static Button safety = new JoystickButton(OI.leftStick, 1);
 	
 

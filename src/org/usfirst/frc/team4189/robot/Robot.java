@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.AxisCamera;
 import org.usfirst.frc.team4189.robot.commands.DriveWithJoysticks;
 
-import org.usfirst.frc.team4189.robot.commands.PortcullisLifter;
+//import org.usfirst.frc.team4189.robot.commands.PortcullisLifter;
 import org.usfirst.frc.team4189.robot.commands.SetScissorLifter;
 import org.usfirst.frc.team4189.robot.commands.ShooterCommand;
 import org.usfirst.frc.team4189.robot.commands.WinchCommand;
@@ -161,7 +161,7 @@ public class Robot extends IterativeRobot {
 		chassis.dashData();
 		// Scheduler.getInstance().add(new PortcullisLifter());
 		Scheduler.getInstance().add(new ShooterCommand());
-		Scheduler.getInstance().add(new PortcullisLifter());
+		//Scheduler.getInstance().add(new PortcullisLifter());
 		Scheduler.getInstance().add(new SetScissorLifter());
 		Scheduler.getInstance().add(new WinchCommand());
 		Shooter.introBallMotor.set(0);
