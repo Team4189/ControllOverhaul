@@ -9,20 +9,33 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.AxisCamera;
 import org.usfirst.frc.team4189.robot.commands.DriveWithJoysticks;
-import org.usfirst.frc.team4189.robot.commands.ExampleCommand;
-import org.usfirst.frc.team4189.robot.commands.PortcullisLifter;
+
+//import org.usfirst.frc.team4189.robot.commands.PortcullisLifter;
+import org.usfirst.frc.team4189.robot.commands.SetScissorLifter;
 import org.usfirst.frc.team4189.robot.commands.ShooterCommand;
+import org.usfirst.frc.team4189.robot.commands.WinchCommand;
 import org.usfirst.frc.team4189.robot.subsystems.Chassis;
-import org.usfirst.frc.team4189.robot.subsystems.Cheval;
-import org.usfirst.frc.team4189.robot.subsystems.ExampleSubsystem;
-import org.usfirst.frc.team4189.robot.subsystems.Lifter;
+import org.usfirst.frc.team4189.robot.subsystems.Pixy;
+import org.usfirst.frc.team4189.robot.subsystems.PortcullisSubsystem;
+
+import org.usfirst.frc.team4189.robot.subsystems.ScissorLifter;
 import org.usfirst.frc.team4189.robot.subsystems.Shooter;
 
+import Autonomous.DriveForAccel;
 import Autonomous.DriveForDistance;
 import Autonomous.DriveForSquare;
+import Autonomous.DriveOverRampart;
+
 import Autonomous.GoStraight;
+import Autonomous.LowBar;
+import Autonomous.LowBarAndShoot;
+import Autonomous.Moat;
+import Autonomous.Portcullis;
+import Autonomous.RockWall;
+import Autonomous.RoughTerrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,97 +46,153 @@ import Autonomous.GoStraight;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static Chassis chassis = new Chassis();
-	public static Lifter lifter = new Lifter();
+	public static ScissorLifter scissorLifter = new ScissorLifter();
 	public static Shooter shooter = new Shooter();
-	public static Cheval cheval = new Cheval();
+	public static PortcullisSubsystem cheval = new PortcullisSubsystem();
+	public static Pixy pixy = new Pixy();
 	DriveWithJoysticks driveWithJoysticks;
-   
-	
+	public String currentAutonomous;
+	Timer timer = new Timer();
 	CameraServer server;
 
 	public Robot() {
-		server = CameraServer.getInstance();
-		server.setQuality(50);
-		//the camera name (ex "cam0") can be found through the roborio web interface
-		server.startAutomaticCapture("cam0");
+		
 	}
 
+	Command autonomousCommand;
 
-    Command autonomousCommand;
+	/**
+	 * This function is run when the robot is first started up and should be
+	 * used for any initialization code.
+	 */
+	public void robotInit() {
+		
+		server = CameraServer.getInstance();
+		server.setQuality(50);
+		// the camera name (ex "cam0") can be found through the roborio web
+		// interface
+		server.startAutomaticCapture("cam0");
+		
+		oi = new OI();
+		// instantiate the command used for the autonomous period
 
-    /**
-     * This function is run when the robot is first started up and should be
-     * used for any initialization code.
-     */
-    public void robotInit() {
-    	oi = new OI();
-        // instantiate the command used for the autonomous period
-        autonomousCommand = new DriveForDistance();
-        driveWithJoysticks = new DriveWithJoysticks();
-        chassis.dashData();
-        System.out.println("Version 1.1");
-        System.out.println("The Robot has initialized");
-    }
-	
+		driveWithJoysticks = new DriveWithJoysticks();
+		currentAutonomous = new String();
+		OI.gyro.reset();
+		SmartDashboard.putNumber("Which Autonomous", 0);
+		chassis.dashData();
+		System.out.println("Version 1.1");
+		System.out.println("The Robot has initialized");
+
+	}
+
 	public void disabledPeriodic() {
+		Scheduler.getInstance().run();
+		chassis.dashData();
+
+		if (SmartDashboard.getNumber("Which Autonomous") == 1) {
+			currentAutonomous = "Drive Over Ramparts";
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 2) {
+			currentAutonomous = "Low Bar";
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 3) {
+			currentAutonomous = "Moat";
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 4) {
+			currentAutonomous = "Portcullis";
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 5) {
+			currentAutonomous = "Rock Wall";
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 6) {
+			currentAutonomous = "Rough Terrain";
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 7) {
+			currentAutonomous = "Drive to Object";
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 8) {
+			currentAutonomous = "Low Bar, Turn and Shoot";
+		} else {
+			currentAutonomous = "Nonexestant/Invalid Autonomous";
+		}
+
+		SmartDashboard.putString("Current Autonomous", currentAutonomous);
+	}
+
+	public void autonomousInit() {
+
+		if (SmartDashboard.getNumber("Which Autonomous") == 1) {
+			autonomousCommand = new DriveOverRampart();
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 2) {
+			autonomousCommand = new LowBar();
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 3) {
+			autonomousCommand = new Moat();
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 4) {
+			autonomousCommand = new Portcullis();
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 5) {
+			autonomousCommand = new RockWall();
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 6) {
+			autonomousCommand = new RoughTerrain();
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 7) {
+			autonomousCommand = new DriveForDistance();
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 8) {
+			autonomousCommand = new LowBarAndShoot();
+		} else {
+			autonomousCommand = null;
+		}
+
+		// schedule the autonomous command (example)
+		if (autonomousCommand != null)
+			autonomousCommand.start();
+		chassis.dashData();
+	}
+
+	/**
+	 * This function is called periodically during autonomous
+	 */
+	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		chassis.dashData();
 	}
 
-    public void autonomousInit() {
-        // schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
-        chassis.dashData();
-    }
-
-    /**
-     * This function is called periodically during autonomous
-     */
-    public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
-        chassis.dashData();
-    }
-
-    public void teleopInit() {
+	public void teleopInit() {
 		// This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-        if (autonomousCommand != null) autonomousCommand.cancel();
-        chassis.dashData();
-        Scheduler.getInstance().add(new ShooterCommand());
-        //Scheduler.getInstance().add(new PortcullisLifter());
-        //Scheduler.getInstance().add(new *command*());
-        
-    }
+		// teleop starts running. If you want the autonomous to
+		// continue until interrupted by another command, remove
+		// this line or comment it out.
+		if (autonomousCommand != null)
+			autonomousCommand.cancel();
+		chassis.dashData();
+		// Scheduler.getInstance().add(new PortcullisLifter());
+		Scheduler.getInstance().add(new ShooterCommand());
+		//Scheduler.getInstance().add(new PortcullisLifter());
+		Scheduler.getInstance().add(new SetScissorLifter());
+		Scheduler.getInstance().add(new WinchCommand());
+		Shooter.introBallMotor.set(0);
+		// Scheduler.getInstance().add(new *command*());
 
-    /**
-     * This function is called when the disabled button is hit.
-     * You can use it to reset subsystems before shutting down.
-     */
-    public void disabledInit(){
-    	chassis.dashData();
+	}
 
-    }
+	/**
+	 * This function is called when the disabled button is hit. You can use it
+	 * to reset subsystems before shutting down.
+	 */
+	public void disabledInit() {
+		chassis.dashData();
 
-    /**
-     * This function is called periodically during operator control
-     */
-    
-    
-    public void teleopPeriodic() {
-        Scheduler.getInstance().run();
-        chassis.dashData();
-    }
-    
-    /**
-     * This function is called periodically during test mode
-     */
-    public void testPeriodic() {
-        LiveWindow.run();
-        chassis.dashData();
-    }
+	}
+
+	/**
+	 * This function is called periodically during operator control
+	 */
+
+	public void teleopPeriodic() {
+		Scheduler.getInstance().run();
+		chassis.dashData();
+		SmartDashboard.putNumber("Distance", Robot.chassis.convert());
+	}
+
+	/**
+	 * This function is called periodically during test mode
+	 */
+	public void testPeriodic() {
+		LiveWindow.run();
+		chassis.dashData();
+	}
 }

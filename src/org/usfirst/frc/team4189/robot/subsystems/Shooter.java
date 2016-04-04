@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -19,11 +20,13 @@ public class Shooter extends Subsystem {
     public static Talon shooterAngleMotor = new Talon(RobotMap.shooterAnglePort);
     public static Talon shooterOperation = new Talon(RobotMap.shooterPort);
     public static Talon introBallMotor = new Talon(RobotMap.introBallPort);
-	public DigitalInput shooterLimitSW1 = new DigitalInput(RobotMap.shooterLimitSW1);    
-	public DigitalInput shooterLimitSW2 = new DigitalInput(RobotMap.shooterLimitSW2);
+//	public DigitalInput shooterLimitSW1 = new DigitalInput(RobotMap.shooterLimitSW1);    
+//	public DigitalInput shooterLimitSW2 = new DigitalInput(RobotMap.shooterLimitSW2);
 	DigitalInput chanA = new DigitalInput(RobotMap.encA3Port);
     DigitalInput chanB = new DigitalInput(RobotMap.encB3Port);
     public Encoder enc3 = new Encoder(chanA, chanB);
+    
+    
     
     public double encGet() {
 	return enc3.getDistance();

@@ -38,8 +38,8 @@ public class SquareUp extends Command {
         {
         	gyroDistance.put(Robot.chassis.gyroConvert(), Robot.chassis.convert());
             //SwerveVs[i] = Robot.chassis.convert();
-            SmartDashboard.putNumber("Distance In Inches", Robot.chassis.convert());
-            SmartDashboard.putNumber("Angle at distance", Robot.chassis.gyroConvert());
+//            SmartDashboard.putNumber("Distance In Inches", Robot.chassis.convert());
+//            SmartDashboard.putNumber("Angle at distance", Robot.chassis.gyroConvert());
         }
         Robot.chassis.setSpeed(0,0);
         minRange = gyroDistance.firstEntry().getValue();
@@ -62,8 +62,8 @@ public class SquareUp extends Command {
     public void findMinRange()
     {
         compareRange();
-        SmartDashboard.putNumber("Minimum Range", this.range);
-        SmartDashboard.putNumber("Angle at distance", this.angle);
+//        SmartDashboard.putNumber("Minimum Range", this.range);
+//        SmartDashboard.putNumber("Angle at distance", this.angle);
         
         
         while(Robot.chassis.gyroConvert() < angle - 4.0 || Robot.chassis.gyroConvert() > angle + .5)
@@ -71,14 +71,14 @@ public class SquareUp extends Command {
         	if (Robot.chassis.gyroConvert() > angle)
             {
             	Robot.chassis.setSpeed(-0.35, 0.37);
-            	SmartDashboard.putNumber("Gyro Angle", Robot.chassis.gyroConvert());
-            	SmartDashboard.putNumber("Distance In Inches", Robot.chassis.convert());
+//            	SmartDashboard.putNumber("Gyro Angle", Robot.chassis.gyroConvert());
+//            	SmartDashboard.putNumber("Distance In Inches", Robot.chassis.convert());
             }
             else
             {
             	Robot.chassis.setSpeed(-.35,  .37);
-            	SmartDashboard.putNumber("Gyro Angle", Robot.chassis.gyroConvert());
-            	SmartDashboard.putNumber("Distance In Inches", Robot.chassis.convert());
+//            	SmartDashboard.putNumber("Gyro Angle", Robot.chassis.gyroConvert());
+//            	SmartDashboard.putNumber("Distance In Inches", Robot.chassis.convert());
             }
         }
         

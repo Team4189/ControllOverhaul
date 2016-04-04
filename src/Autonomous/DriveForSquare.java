@@ -47,7 +47,7 @@ public class DriveForSquare extends Command {
 				timer.reset();
 			}
 		}
-		SmartDashboard.putNumber("Timer", timer.get());
+//		SmartDashboard.putNumber("Timer", timer.get());
 
 
 	}

@@ -3,13 +3,18 @@ package Autonomous;
 import org.usfirst.frc.team4189.robot.OI;
 import org.usfirst.frc.team4189.robot.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
 public class DriveForDistance extends Command {
-    final static double CURVE_SEVERITY = 1.15;
+   
+	final static double CURVE_SEVERITY = 1.15;
+    Timer timer;
+    double inchesInit = Robot.chassis.convert();
+    double setSpeed;
 
     public DriveForDistance() {
 	// Use requires() here to declare subsystem dependencies
@@ -18,11 +23,9 @@ public class DriveForDistance extends Command {
     }
 
     // Called just before this Command runs the first time
-    double inchesInit = Robot.chassis.convert();
-    double setSpeed;
-    
     protected void initialize() {
     	OI.gyro.reset();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -3,6 +3,7 @@ package Autonomous;
 import org.usfirst.frc.team4189.robot.OI;
 import org.usfirst.frc.team4189.robot.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -10,6 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class GoStraight extends Command {
 
+	Timer timer;
+	
     public GoStraight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -18,22 +21,22 @@ public class GoStraight extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	OI.gyro.reset();
+    	timer = new Timer();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.chassis.gyroConvert() > 5){
-    		Robot.chassis.setSpeed(-.10, -.40);
+    		Robot.chassis.setSpeed(-.1 , -.4);
     	}
     	else{
-    		Robot.chassis.setSpeed(-.20, -.20);
-    		
+    		//Robot.chassis.setSpeed(-.20, -.20);
     	}
     	if(Robot.chassis.gyroConvert() < -5){
-    		Robot.chassis.setSpeed(-.40, -.10);
+    		Robot.chassis.setSpeed(-.4 , -.1);
     	}
     	else{
-    		Robot.chassis.setSpeed(-.20, -.20);
+    		//Robot.chassis.setSpeed(-.20, -.20);
     	}
     }
 
