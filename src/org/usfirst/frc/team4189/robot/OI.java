@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.AnalogInput;
 //import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
+
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
@@ -28,8 +28,9 @@ public class OI {
 
 	// Analog Inputs
 	public static AnalogInput rangeFinder1 = new AnalogInput(0);
-	public static AnalogInput rangeFinder2 = new AnalogInput(2);
 	public static AnalogGyro gyro = new AnalogGyro(1);
+	public static AnalogInput pixyX = new AnalogInput(2);
+	public static AnalogInput pixyY = new AnalogInput(3);
 	
 
 	// Buttons
@@ -49,7 +50,9 @@ public class OI {
 	public static Button lifterUp = new JoystickButton(OI.accStick, 5);
 	public static Button lifterDown = new JoystickButton(OI.accStick, 3);
 	public static Button portSaftey = new JoystickButton(OI.accStick, 11);
-	public static Button scoopPulse = new JoystickButton(OI.accStick, 4);
+	//public static Button scoopPulse = new JoystickButton(OI.accStick, 4);
+	public static Button autoAllign = new JoystickButton(OI.accStick, 6);
+	public static Button autoAllignY = new JoystickButton(OI.accStick, 4);
 	
 	public static Button winchUp = new JoystickButton(OI.leftStick, 3);
 	public static Button winchDown = new JoystickButton(OI.leftStick, 2);

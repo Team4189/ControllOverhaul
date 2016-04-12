@@ -62,6 +62,8 @@ public class DriveWithJoysticks extends Command {
     	
     	if (OI.portSaftey.get() == true){
     		PortcullisSubsystem.chevalMotor.set(OI.accStick.getY());
+    	} else {
+    		PortcullisSubsystem.chevalMotor.set(0);
     	}
     	
     	SmartDashboard.putNumber("Left Stick", OI.leftStick.getY());
@@ -99,7 +101,7 @@ public class DriveWithJoysticks extends Command {
         position += 0.5 * Math.abs(accel.getY()) * (dt * dt);
         
         
-        System.out.println("Raw Serial Data" + Robot.pixy.pixy.readString());
+       // System.out.println("Raw Serial Data" + Robot.pixy.pixy.readString());
 //        SmartDashboard.putNumber("Distance Traveled", position);
 //        SmartDashboard.putNumber("Accelerometer", accel.getX());
 //        SmartDashboard.putNumber("Corrected Accel", getAccelVar);

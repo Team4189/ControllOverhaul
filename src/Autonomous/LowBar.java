@@ -28,29 +28,32 @@ public class LowBar extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (timer.get() < 3) {
+		if (timer.get() < 6) {
+			System.out.println("less than three");
 			if (Robot.chassis.gyroConvert() > 5) {
 				Robot.chassis.setSpeed(-.5, -.2);
 			} else {
-				Robot.chassis.setSpeed(-.30, -.30);
+				Robot.chassis.setSpeed(-.40, -.40);
 			}
 			if (Robot.chassis.gyroConvert() < -5) {
-				Robot.chassis.setSpeed(-.5, -.2);
+				Robot.chassis.setSpeed(-.2, -.5);
 			} else {
-				Robot.chassis.setSpeed(-.30, -.30);
+				Robot.chassis.setSpeed(-.40, -.40);
 			}
-		} else if(timer.get() > 3 && timer.get() < 6){
+		} else if(timer.get() > 6 && timer.get() < 12){
+			System.out.println("greater than three");
 			if (Robot.chassis.gyroConvert() > 5) {
 				Robot.chassis.setSpeed(.5, .2);
 			} else {
-				Robot.chassis.setSpeed(.30, .30);
+				Robot.chassis.setSpeed(.40, .40);
 			}
 			if (Robot.chassis.gyroConvert() < -5) {
-				Robot.chassis.setSpeed(.5, .2);
+				Robot.chassis.setSpeed(.2, .5);
 			} else {
-				Robot.chassis.setSpeed(.30, .30);
+				Robot.chassis.setSpeed(.40, .40);
 			}
 		}else{ 
+			System.out.println("Done");
 			this.cancel();
 		}
 	SmartDashboard.putNumber("Autonomous Timer", timer.get());

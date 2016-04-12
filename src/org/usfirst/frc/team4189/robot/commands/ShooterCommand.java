@@ -12,31 +12,40 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class ShooterCommand extends Command {
-	//private State currentState;
+	// private State currentState;
 	int state;
 	Timer timer = new Timer();
+	boolean yAlligned;
+	boolean xAlligned;
 
 	public ShooterCommand() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 	}
 
-//	public enum State {
-//		SCOOPING_POS, TRAVELING_POS, SHOOTING_POS
-//	}
+	// public enum State {
+	// SCOOPING_POS, TRAVELING_POS, SHOOTING_POS
+	// }
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		state = 2;
+		yAlligned = false;
+		xAlligned = false;
 	}
-	
-	
+
+	double v() {
+		return (.2 * Math.abs(OI.pixyX.getVoltage() - 2.3) + .15);
+	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 
 		SmartDashboard.putNumber("Shooter Enc Val", Robot.shooter.encGet());
-		
+		SmartDashboard.putBoolean("Is alligning", OI.autoAllign.get());
+		SmartDashboard.putBoolean("X Alligned", xAlligned);
+		SmartDashboard.putBoolean("Y Alligned", yAlligned);
+
 		if (OI.shooterUp.get()) {
 			state = 3;
 		} else if (OI.shooterDown.get()) {
@@ -53,6 +62,7 @@ public class ShooterCommand extends Command {
 			} else if (Robot.shooter.encGet() < 10 && OI.safety.get() == false) {
 				Shooter.shooterAngleMotor.set(.5);
 			}
+
 			if (Robot.shooter.encGet() > -10 && Robot.shooter.encGet() < 10 && OI.safety.get() == false) {
 				Shooter.shooterAngleMotor.set(0);
 			}
@@ -62,16 +72,41 @@ public class ShooterCommand extends Command {
 			} else {
 				Shooter.shooterOperation.set(0);
 			}
-			
-			if(timer.get() != 0 && OI.scoopPulse.get() == true){
-				timer.start();
-			}
-			
-			if(timer.get() < .2){
+
+//			if (timer.get() != 0 && OI.scoopPulse.get() == true) {
+//				timer.start();
+//			}
+
+			if (timer.get() < .2 && timer.get() != 0) {
 				Robot.shooter.shooterOperation.set(-1);
-			} else if (timer.get() >.2){
+			} else if (timer.get() > .2) {
 				Shooter.shooterOperation.set(0);
 			}
+
+			if (OI.autoAllign.get() == true) {
+
+				if (OI.pixyX.getVoltage() < 2.2) {
+					Robot.chassis.setSpeed(v(), -v());
+				} else if (OI.pixyX.getVoltage() > 2.4) {
+					Robot.chassis.setSpeed(-v(), v());
+				} else {
+					Robot.chassis.setSpeed(0, 0);
+					xAlligned = true;
+				}
+			}
+			
+			if (OI.autoAllignY.get() == true) {
+
+				if (OI.pixyY.getVoltage() < 3.1) {
+					Robot.chassis.setSpeed(-v(), -v());
+				} else if (OI.pixyY.getVoltage() > 3.3) {
+					Robot.chassis.setSpeed(v(), v());
+				} else {
+					Robot.chassis.setSpeed(0, 0);
+					yAlligned = true;
+				}
+			}
+			
 			
 
 			break;
@@ -89,18 +124,20 @@ public class ShooterCommand extends Command {
 			break;
 
 		case 3:
-			if (Robot.shooter.encGet() < 1030 && OI.safety.get() == false) {
+			if (Robot.shooter.encGet() < 940 && OI.safety.get() == false) {
 				Shooter.shooterAngleMotor.set(.5);
-			} else if (Robot.shooter.encGet() > 1050 && OI.safety.get() == false) {
+			} else if (Robot.shooter.encGet() > 960 && OI.safety.get() == false) {
 				Shooter.shooterAngleMotor.set(-.5);
 			} else {
 				Shooter.shooterAngleMotor.set(0);
 			}
+
 			if (OI.shooterShoot.get() == true) {
 				Shooter.shooterOperation.set(1);
 			} else {
 				Shooter.shooterOperation.set(0);
 			}
+
 			break;
 
 		}

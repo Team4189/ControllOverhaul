@@ -43,12 +43,12 @@ public class Chassis extends Subsystem {
 		// return 1;
 	}
 	
-	public double convert2() {
-		// conversion factor: 4.9mV/1cm
-		// this is our best guess so far
-		return OI.rangeFinder2.getVoltage() * 83.961;
-		// return 1;
-	}
+//	public double convert2() {
+//		// conversion factor: 4.9mV/1cm
+//		// this is our best guess so far
+//		return OI.rangeFinder2.getVoltage() * 83.961;
+//		// return 1;
+//	}
 
 	public double gyroConvert() {
 		if (OI.gyro.getAngle() < 360 && OI.gyro.getAngle() > -360) {
@@ -70,10 +70,11 @@ public class Chassis extends Subsystem {
 		// System.out.println(OI.gyro.getAngle());
 
 		SmartDashboard.putNumber("Distance In Inches", convert());
-		SmartDashboard.putNumber("Distance in Inches, Rear" , Robot.chassis.convert2());
+		//SmartDashboard.putNumber("Distance in Inches, Rear" , Robot.chassis.convert2());
 		// SmartDashboard.putNumber("Gyro Acceleration" , OI.gyro.getRate());
 		SmartDashboard.putNumber("Gyro Angle", gyroConvert());
-		
+		SmartDashboard.putNumber("Pixy X", OI.pixyX.getVoltage());
+		SmartDashboard.putNumber("Pixy Y", OI.pixyY.getVoltage());
 		
 		/**
 		 * We aren't doing any logic with these numbers, currently, just
