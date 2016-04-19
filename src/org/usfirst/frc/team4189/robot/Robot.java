@@ -97,7 +97,11 @@ public class Robot extends IterativeRobot {
 			currentAutonomous = "Rock Wall/Moat/Ramparts";
 		} else if (SmartDashboard.getNumber("Which Autonomous") == 3) {
 			currentAutonomous = "Portcullis";
-		} else {
+		} else if (SmartDashboard.getNumber("Which Autonomous") == 8){
+			currentAutonomous = "Low Bar Shoot";
+		}
+		
+		else {
 			currentAutonomous = "Nonexestant/Invalid Autonomous";
 		}
 
@@ -112,7 +116,11 @@ public class Robot extends IterativeRobot {
 			autonomousCommand = new RockWall();
 		} else if (SmartDashboard.getNumber("Which Autonomous") == 3) {
 			autonomousCommand = new DriveForDistance();
-		} else {
+		} else if(SmartDashboard.getNumber("Which Autonomous") == 8){
+			autonomousCommand = new LowBarAndShoot();
+		}
+		
+		else {
 			autonomousCommand = null;
 		}
 

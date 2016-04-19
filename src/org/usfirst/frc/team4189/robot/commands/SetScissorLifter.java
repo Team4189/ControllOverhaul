@@ -28,7 +28,7 @@ public class SetScissorLifter extends Command {
 				Robot.scissorLifter.setScissor(-1);
 			}
 			if (OI.lifterDown.get() == true) {
-				Robot.scissorLifter.setScissor(.5);
+				Robot.scissorLifter.setScissor(1);
 			}
 		} else{
 			Robot.scissorLifter.setScissor(0);

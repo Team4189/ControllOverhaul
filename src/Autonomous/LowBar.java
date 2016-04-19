@@ -28,29 +28,29 @@ public class LowBar extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (timer.get() < 6) {
-			System.out.println("less than three");
+		if (timer.get() < 4) {
+			System.out.println("less than four");
 			if (Robot.chassis.gyroConvert() > 5) {
-				Robot.chassis.setSpeed(-.5, -.2);
+				Robot.chassis.setSpeed(-.7, -.4);
 			} else {
-				Robot.chassis.setSpeed(-.40, -.40);
+				Robot.chassis.setSpeed(-.5, -.5);
 			}
 			if (Robot.chassis.gyroConvert() < -5) {
-				Robot.chassis.setSpeed(-.2, -.5);
+				Robot.chassis.setSpeed(-.4, -.7);
 			} else {
-				Robot.chassis.setSpeed(-.40, -.40);
+				Robot.chassis.setSpeed(-.50, -.50);
 			}
-		} else if(timer.get() > 6 && timer.get() < 12){
-			System.out.println("greater than three");
+		} else if(timer.get() > 4 && timer.get() < 8){
+			System.out.println("greater than four");
 			if (Robot.chassis.gyroConvert() > 5) {
-				Robot.chassis.setSpeed(.5, .2);
+				Robot.chassis.setSpeed(.7, .4);
 			} else {
-				Robot.chassis.setSpeed(.40, .40);
+				Robot.chassis.setSpeed(.50, .50);
 			}
 			if (Robot.chassis.gyroConvert() < -5) {
-				Robot.chassis.setSpeed(.2, .5);
+				Robot.chassis.setSpeed(.4, .7);
 			} else {
-				Robot.chassis.setSpeed(.40, .40);
+				Robot.chassis.setSpeed(.50, .50);
 			}
 		}else{ 
 			System.out.println("Done");
